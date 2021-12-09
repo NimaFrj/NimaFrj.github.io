@@ -23,10 +23,11 @@ projects:
   #   - stars
   limit: 9
   exclude:
+  NimaFrj.github.io
     archived: false
     forks: false
     projects:
-    - NimaFrj.github.io
+    NimaFrj.github.io
     # - repo-name
 
 social_media:
