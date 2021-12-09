@@ -24,9 +24,9 @@ projects:
   limit: 9
   exclude:
     archived: false
-    forks: true
+    forks: false
     projects:
-    NimaFrj.github.io
+    - NimaFrj.github.io
     # - repo-name
 
 social_media:
