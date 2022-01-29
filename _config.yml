@@ -24,9 +24,9 @@ projects:
   limit: 9
   exclude:
   NimaFrj.github.io
-    archived: false
+    archived: true
     forks: false
-    projects:
+    projects: false
     NimaFrj.github.io
     # - repo-name
 
