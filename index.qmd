@@ -36,7 +36,7 @@ On this site I keep a list of my publications, notable projects, [my CV](cv.pdf)
 
 **Investigation on the characteristics of a Non-Pneumatic tire with different spoke shapes.** Faraji, M.A, Daneshmehr, A.R. 2022. The 30th Annual International Conference of Iranian Society of Mechanical Engineers-ISME2022.
 
-**Computational study on a DAH auxetic structure manufactured by corrugated sheets.** Faraji, M.A, Mazaheri, H. 2020. International Conference on Manufacturing Engineering at Tarbiat Modares University-ICME 2018
+**Computational study on a DAH auxetic structure manufactured by corrugated sheets.** Faraji, M.A, Mazaheri, H. 2020. International Conference on Manufacturing Engineering at Tarbiat Modares University-ICME 2018.
 
 ### GitHub Projects
 
