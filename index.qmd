@@ -1,7 +1,54 @@
 ---
-title: "NimaFrj.github.io"
+title: "Mohammad Amin Faraji"
+image: avatar.jpg
+about:
+  template: trestles
+  links:
+    - text: LinkedIn
+      url: "https://www.linkedin.com/in/nimafaraji/"
+    - text: Twitter
+      icon: twitter
+      url: "https://twitter.com/darvacki"
+    - text: GitHub
+      icon: github
+      url: "https://github.com/nimafrj"
+    - text: Email
+      url: "mailto:frjnima@gmail.com"
+    - text: Blog
+      url: "blog.html"
+    - text: CV
+      url: "cv.pdf"
+comments: false
 ---
 
-This is a Quarto website.
+::: column-page
+## Bio
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Hi! I'm Mohammad Amin, a research assistant at University of Tehran. My research interest includes Machine Vision, Autoencoders, Optimization and Auxetic Structures. I'd rather be called "Nima" as I go by this among my friends!
+
+On this site I keep a list of my publications, notable projects, [my CV](cv.pdf), and a simple [blog](blog.html).
+:::
+
+::: column-page
+## Selected Projects
+
+### Publications
+
+**Investigation on the characteristics of a Non-Pneumatic tire with different spoke shapes.** Faraji, M.A, Daneshmehr, A.R. 2022. The 30th Annual International Conference of Iranian Society of Mechanical Engineers-ISME2022.
+
+**Computational study on a DAH auxetic structure manufactured by corrugated sheets.** Faraji, M.A, Mazaheri, H. 2020. International Conference on Manufacturing Engineering at Tarbiat Modares University-ICME 2018
+
+### GitHub Projects
+
+[**Debiasing:**](https://github.com/NimaFrj/Debiasing/blob/main/Debiasing.ipynb)
+
+This code is part of the MIT intro to deep learning course
+
+[**Image Segmentation:**](https://github.com/NimaFrj/Image_Segmentation/blob/main/image-segmentation.ipynb)
+
+Using Clustering for Image Segmentation
+
+[**Pen or Pencil classifier**](https://nimafrj.github.io/Pencil_Website/pencil.html)**:**
+
+It's whole objective is to simply classify whether the input is the picture of a pen or a pencil.
+:::
