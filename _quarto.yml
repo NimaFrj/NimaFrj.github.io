@@ -26,4 +26,4 @@ website:
         href: blog.xml
 format:
   html:
-    theme: [sandstone, _variables.scss]
+    theme: Simplex
