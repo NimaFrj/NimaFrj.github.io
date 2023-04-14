@@ -26,4 +26,4 @@ website:
         href: blog.xml
 format:
   html:
-    theme: Simplex
+    theme: simplex
