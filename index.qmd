@@ -15,7 +15,7 @@ about:
     - text: Email
       url: "mailto:frjnima@gmail.com"
     - text: Blog
-      url: "blog.html"
+      url: "Blog"
     - text: CV
       url: "cv.pdf"
 comments: false
@@ -24,9 +24,13 @@ comments: false
 ::: column-page
 ## Bio
 
-Hi! I'm Mohammad Amin, a research assistant at University of Tehran. My research interest includes Machine Vision, Autoencoders, Optimization and Auxetic Structures. I'd rather be called "Nima" as I go by this among my friends!
+Hi! I'm Mohammad Amin, a recent graduate of the University of Tehran with a master's degree in mechanical engineering. My research interests include Auxetic Mechanical Structures, Machine Vision, Autoencoders, and Optimization. I'd rather be called "Nima" as I go by this among my friends!
 
-On this site I keep a list of my publications, notable projects, [my CV](cv.pdf), and a simple [blog](blog.html).
+I'm passionate about using my knowledge to make a positive impact on society. In the future, I hope to pursue a Ph.D. in computer science and work on projects involving machine learning since this greatly impacts human lives. I'd like to have my own contributions.
+
+When not working on my research, I enjoy playing chess [on chess.com](https://www.chess.com/member/darvack){style="background-color: rgb(248, 248, 248); font-size: 12pt; letter-spacing: 0px;"}, reading [Tim Urban's blog](https://waitbutwhy.com/){style="background-color: rgb(248, 248, 248); font-size: 12pt; letter-spacing: 0px;"}, or listening to [Lex Fridman podcasts](https://www.youtube.com/@lexfridman){style="background-color: rgb(248, 248, 248); font-size: 12pt; letter-spacing: 0px;"}.
+
+On this site, you'll find a list of my publications, notable projects, [my CV](cv.pdf){style="background-color: rgb(248, 248, 248); font-size: 12pt; letter-spacing: 0px;"}, and a simple [blog](Blog) where I share my thoughts on computer science, life, and self-improvement.
 :::
 
 ::: column-page
@@ -50,5 +54,5 @@ Using Clustering for Image Segmentation
 
 [**Pen or Pencil classifier**](https://nimafrj.github.io/Pencil_Website/pencil.html)**:**
 
-It's whole objective is to simply classify whether the input is the picture of a pen or a pencil.
+It's whole objective is to simply classify whether the input is the picture of a pen or a pencil that is trained on the pictures from the internet.
 :::
