@@ -48,6 +48,10 @@ On this site, you'll find a list of my publications, notable projects, [my CV](h
 
 ### GitHub Projects
 
+[**Comprehensive Study on Feature Importance of Transformers Test Data:**](https://github.com/NimaFrj/transformers-feature-importance)
+
+Extracting feature importance of transformers test data and examining their dependencies.
+
 [**Debiasing:**](https://github.com/NimaFrj/Debiasing/blob/main/Debiasing.ipynb)
 
 This code is part of the MIT intro to deep learning course
