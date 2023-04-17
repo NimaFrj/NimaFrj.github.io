@@ -17,7 +17,7 @@ about:
     - text: Blog
       url: "Blog"
     - text: CV
-      url: "cv.pdf"
+      url: "CV2.pdf"
 comments: false
 ---
 
@@ -32,7 +32,7 @@ I'm passionate about using my knowledge to make a positive impact on society. In
 
 When not working on my research, I enjoy playing chess [on chess.com](https://www.chess.com/member/darvack), reading [Tim Urban's blog](https://waitbutwhy.com/), or listening to [Lex Fridman's podcasts](https://www.youtube.com/@lexfridman).
 
-On this site, you'll find a list of my publications, notable projects, [my CV](https://nimafrj.github.io/cv.pdf), and a simple [blog](Blog) where I share my thoughts on computer science, life, and self-improvement.
+On this site, you'll find a list of my publications, notable projects, [my CV](https://nimafrj.github.io/CV2.pdf), and a simple [blog](Blog) where I share my thoughts on computer science, life, and self-improvement.
 :::
 
 ::: column-page
