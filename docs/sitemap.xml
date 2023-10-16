@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nimafrj.github.io/about.html</loc>
-    <lastmod>2023-04-14T14:04:56.230Z</lastmod>
+    <loc>https://b9f0f09b-efed-4d84-9ccc-f00dd1eb4712.netlify.app/Blog/about.html</loc>
+    <lastmod>2023-10-16T18:07:39.998Z</lastmod>
   </url>
   <url>
-    <loc>https://nimafrj.github.io/Blog/about.html</loc>
-    <lastmod>2023-04-14T14:04:57.614Z</lastmod>
+    <loc>https://b9f0f09b-efed-4d84-9ccc-f00dd1eb4712.netlify.app/Blog/index.html</loc>
+    <lastmod>2023-10-16T18:07:41.450Z</lastmod>
   </url>
   <url>
-    <loc>https://nimafrj.github.io/Blog/index.html</loc>
-    <lastmod>2023-05-01T07:27:32.043Z</lastmod>
+    <loc>https://b9f0f09b-efed-4d84-9ccc-f00dd1eb4712.netlify.app/Blog/posts/post-with-code/index.html</loc>
+    <lastmod>2023-10-16T18:07:42.163Z</lastmod>
   </url>
   <url>
-    <loc>https://nimafrj.github.io/Blog/posts/post-with-code/index.html</loc>
-    <lastmod>2023-04-14T14:18:42.150Z</lastmod>
+    <loc>https://b9f0f09b-efed-4d84-9ccc-f00dd1eb4712.netlify.app/Blog/posts/welcome/index.html</loc>
+    <lastmod>2023-10-16T18:07:43.009Z</lastmod>
   </url>
   <url>
-    <loc>https://nimafrj.github.io/Blog/posts/welcome/index.html</loc>
-    <lastmod>2023-04-14T14:18:53.347Z</lastmod>
+    <loc>https://b9f0f09b-efed-4d84-9ccc-f00dd1eb4712.netlify.app/index.html</loc>
+    <lastmod>2023-10-16T18:07:43.891Z</lastmod>
   </url>
   <url>
-    <loc>https://nimafrj.github.io/index.html</loc>
-    <lastmod>2023-05-10T07:48:11.995Z</lastmod>
+    <loc>https://b9f0f09b-efed-4d84-9ccc-f00dd1eb4712.netlify.app/pdf/pdf.html</loc>
+    <lastmod>2023-10-16T18:07:44.619Z</lastmod>
+  </url>
+  <url>
+    <loc>https://b9f0f09b-efed-4d84-9ccc-f00dd1eb4712.netlify.app/pdf/transformer-paper4.html</loc>
+    <lastmod>2023-10-16T18:07:45.692Z</lastmod>
   </url>
 </urlset>

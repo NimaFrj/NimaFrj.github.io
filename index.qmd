@@ -1,5 +1,5 @@
 ---
-star---
+#star---
 title: "Mohammad Amin Faraji"
 image: avatar.jpg
 about:
