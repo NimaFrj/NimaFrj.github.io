@@ -1,4 +1,5 @@
 ---
+star---
 title: "Mohammad Amin Faraji"
 image: avatar.jpg
 about:
@@ -62,5 +63,5 @@ My code for Kaggle's NLP competition "U.S. Patent Phrase to Phrase Matching".
 
 [**Pen or Pencil classifier**](https://nimafrj.github.io/Pencil_Website/pencil.html)**:**
 
-It's whole objective is to simply classify whether the input is the picture of a pen or a pencil that is trained on the pictures from the internet.
+It's whole objective is a web deployment of a pen or a pencil classifier that is trained on the pictures from the internet.
 :::

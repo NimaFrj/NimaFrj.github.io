@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>transformer-paper4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="transformer-paper4_files/libs/clipboard/clipboard.min.js"></script>
+<script src="transformer-paper4_files/libs/quarto-html/quarto.js"></script>
+<script src="transformer-paper4_files/libs/quarto-html/popper.min.js"></script>
+<script src="transformer-paper4_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="transformer-paper4_files/libs/quarto-html/anchor.min.js"></script>
+<link href="transformer-paper4_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="transformer-paper4_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="transformer-paper4_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="transformer-paper4_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="transformer-paper4_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<p>::: {.cell _cell_guid=‘b1076dfc-b9ad-4769-8c92-a6c4dae69d19’ _uuid=‘8f2839f25d086af736a60e9eeb907d3b93b6e0e5’ execution=‘{“iopub.execute_input”:“2023-05-18T13:45:05.122442Z”,“iopub.status.busy”:“2023-05-18T13:45:05.122109Z”,“iopub.status.idle”:“2023-05-18T13:45:05.152481Z”,“shell.execute_reply”:“2023-05-18T13:45:05.151239Z”,“shell.execute_reply.started”:“2023-05-18T13:45:05.122418Z”}’ trusted=‘true’ execution_count=1}</p>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># linear algebra</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co"># data processing, CSV file I/O (e.g. pd.read_csv)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dirname, _, filenames <span class="kw">in</span> os.walk(<span class="st">'/kaggle/input'</span>):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> filename <span class="kw">in</span> filenames:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(os.path.join(dirname, filename))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/kaggle/input/transformer/DatasetB.csv
+/kaggle/input/transformer/DatasetA.csv</code></pre>
+</div>
+<p>:::</p>
+<p>Here, we have loaded the data and set Furan as the label. At first, we have used 25 percent of the dataset A as the test set to come up with a good model, and then use this model to test in the dataset B.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:05.157292Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:05.156783Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:05.575153Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:05.574220Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:05.157267Z&quot;}" data-trusted="true" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ds_A <span class="op">=</span> pd.read_csv(<span class="st">"/kaggle/input/transformer/DatasetA.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ds_B <span class="op">=</span> pd.read_csv(<span class="st">"/kaggle/input/transformer/DatasetB.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Splitting train and test</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>train_set_A, test_set_A <span class="op">=</span> train_test_split(ds_A, test_size <span class="op">=</span> <span class="fl">0.25</span>, random_state <span class="op">=</span> <span class="dv">11</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the labels</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>y_train_A <span class="op">=</span> train_set_A[<span class="st">'Furan'</span>]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>y_test_A <span class="op">=</span> test_set_A[<span class="st">'Furan'</span>]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Dropping the Furan and Health Index columns</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>X_train_A <span class="op">=</span> train_set_A.drop([<span class="st">"Furan"</span>, <span class="st">"HI"</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>X_test_A <span class="op">=</span> test_set_A.drop([<span class="st">"Furan"</span>, <span class="st">"HI"</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># For DatasetB</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>y_B <span class="op">=</span> ds_B[<span class="st">'Furan'</span>]</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>X_B <span class="op">=</span> ds_B.drop([<span class="st">"Furan"</span>, <span class="st">"HI"</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># The code below is for the second case, where we train the data for the whole</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset A and test it on Dataset B</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>y_A <span class="op">=</span> ds_A[<span class="st">'Furan'</span>]</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>X_A <span class="op">=</span> ds_A.drop([<span class="st">"Furan"</span>, <span class="st">"HI"</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/conda/lib/python3.10/site-packages/scipy/__init__.py:146: UserWarning: A NumPy version &gt;=1.16.5 and &lt;1.23.0 is required for this version of SciPy (detected version 1.23.5
+  warnings.warn(f"A NumPy version &gt;={np_minversion} and &lt;{np_maxversion}"</code></pre>
+</div>
+</div>
+<p>The code below, drops the columns that we don’t need, and only keeps the common features between dataset A and B.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:05.576333Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:05.576080Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:05.600787Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:05.599723Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:05.576312Z&quot;}" data-trusted="true" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X_train_A <span class="op">=</span> X_train_A.drop(<span class="bu">set</span>(ds_A.columns) <span class="op">-</span> <span class="bu">set</span>(ds_B.columns), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X_test_A <span class="op">=</span> X_test_A.drop(<span class="bu">set</span>(ds_A.columns) <span class="op">-</span> <span class="bu">set</span>(ds_B.columns), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>X_A <span class="op">=</span> X_A.drop(<span class="bu">set</span>(ds_A.columns) <span class="op">-</span> <span class="bu">set</span>(ds_B.columns), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>X_B <span class="op">=</span> X_B[X_train_A.columns]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>X_train_A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>H2</th>
+      <th>Methane</th>
+      <th>Acetylene</th>
+      <th>Ethylene</th>
+      <th>Ethane</th>
+      <th>Water</th>
+      <th>Acid</th>
+      <th>BDV</th>
+      <th>IFT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>109</th>
+      <td>12.2</td>
+      <td>53.50</td>
+      <td>6.9</td>
+      <td>127.4</td>
+      <td>48.0</td>
+      <td>3</td>
+      <td>0.043</td>
+      <td>83.0</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>566</th>
+      <td>30.2</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>2.6</td>
+      <td>1.1</td>
+      <td>3</td>
+      <td>0.005</td>
+      <td>84.0</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <th>410</th>
+      <td>45.6</td>
+      <td>18.20</td>
+      <td>0.0</td>
+      <td>1.6</td>
+      <td>1.7</td>
+      <td>5</td>
+      <td>0.005</td>
+      <td>87.0</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>316</th>
+      <td>19.7</td>
+      <td>38.50</td>
+      <td>0.0</td>
+      <td>2.7</td>
+      <td>41.6</td>
+      <td>7</td>
+      <td>0.005</td>
+      <td>50.0</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>678</th>
+      <td>11.0</td>
+      <td>7.60</td>
+      <td>0.0</td>
+      <td>0.3</td>
+      <td>1.6</td>
+      <td>3</td>
+      <td>0.005</td>
+      <td>61.0</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>269</th>
+      <td>13.7</td>
+      <td>5.10</td>
+      <td>0.0</td>
+      <td>0.4</td>
+      <td>1.1</td>
+      <td>1</td>
+      <td>0.005</td>
+      <td>94.0</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>337</th>
+      <td>32.9</td>
+      <td>3.77</td>
+      <td>0.0</td>
+      <td>0.6</td>
+      <td>2.4</td>
+      <td>6</td>
+      <td>0.005</td>
+      <td>79.0</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>22.8</td>
+      <td>3.30</td>
+      <td>0.0</td>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>11</td>
+      <td>0.140</td>
+      <td>88.0</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>80</th>
+      <td>61.2</td>
+      <td>27.30</td>
+      <td>0.0</td>
+      <td>25.6</td>
+      <td>20.8</td>
+      <td>9</td>
+      <td>0.099</td>
+      <td>70.0</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>703</th>
+      <td>58.1</td>
+      <td>9.40</td>
+      <td>0.0</td>
+      <td>1.4</td>
+      <td>1.9</td>
+      <td>5</td>
+      <td>0.005</td>
+      <td>86.0</td>
+      <td>33</td>
+    </tr>
+  </tbody>
+</table>
+<p>547 rows × 9 columns</p>
+</div>
+</div>
+</div>
+<p>The code below, discretizes the Furan data into 3 classes.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:05.604491Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:05.603908Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:05.620983Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:05.619697Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:05.604463Z&quot;}" data-trusted="true" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the bin edges for each class</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>, <span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">100</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># define the labels for each class</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>y_train_A <span class="op">=</span> pd.DataFrame(y_train_A)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>y_B <span class="op">=</span> pd.DataFrame(y_B)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>y_test_A <span class="op">=</span> pd.DataFrame(y_test_A)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>y_A <span class="op">=</span> pd.DataFrame(y_A)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># discretize the data into 3 classes</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>y_train_A[<span class="st">'Class'</span>] <span class="op">=</span> pd.cut(y_train_A[<span class="st">'Furan'</span>], bins<span class="op">=</span>bins, labels<span class="op">=</span>labels)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>y_B[<span class="st">'Class'</span>] <span class="op">=</span> pd.cut(y_B[<span class="st">'Furan'</span>], bins<span class="op">=</span>bins, labels<span class="op">=</span>labels)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>y_test_A[<span class="st">'Class'</span>] <span class="op">=</span> pd.cut(y_test_A[<span class="st">'Furan'</span>], bins<span class="op">=</span>bins, labels<span class="op">=</span>labels)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>y_A[<span class="st">'Class'</span>] <span class="op">=</span> pd.cut(y_A[<span class="st">'Furan'</span>], bins<span class="op">=</span>bins, labels<span class="op">=</span>labels)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>y_train_A <span class="op">=</span> np.array(y_train_A.drop(<span class="st">"Furan"</span>, axis <span class="op">=</span> <span class="dv">1</span>)).ravel()</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>y_B <span class="op">=</span> np.array(y_B.drop(<span class="st">"Furan"</span>, axis <span class="op">=</span> <span class="dv">1</span>)).ravel()</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>y_test_A <span class="op">=</span> np.array(y_test_A.drop(<span class="st">"Furan"</span>, axis <span class="op">=</span> <span class="dv">1</span>)).ravel()</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>y_A <span class="op">=</span> np.array(y_A.drop(<span class="st">"Furan"</span>, axis <span class="op">=</span> <span class="dv">1</span>)).ravel()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The below code is a function to plot the confusion matrix</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:05.623118Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:05.622540Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:05.630449Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:05.629469Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:05.623090Z&quot;}" data-trusted="true" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_confusion_matrix(cm, classes, normalize<span class="op">=</span><span class="va">False</span>, cmap<span class="op">=</span>plt.cm.Blues, title<span class="op">=</span><span class="st">'Confusion matrix'</span>):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> normalize:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        cm <span class="op">=</span> cm.astype(<span class="st">'float'</span>) <span class="op">/</span> cm.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)[:, np.newaxis]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Normalized confusion matrix"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Confusion matrix, without normalization'</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(cm)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    plt.imshow(cm, interpolation<span class="op">=</span><span class="st">'nearest'</span>, cmap<span class="op">=</span>cmap)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    plt.colorbar()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    tick_marks <span class="op">=</span> np.arange(<span class="bu">len</span>(classes))</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    plt.xticks(tick_marks, classes, rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    plt.yticks(tick_marks, classes)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    fmt <span class="op">=</span> <span class="st">'.2f'</span> <span class="cf">if</span> normalize <span class="cf">else</span> <span class="st">'d'</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    thresh <span class="op">=</span> cm.<span class="bu">max</span>() <span class="op">/</span> <span class="fl">2.</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, j <span class="kw">in</span> itertools.product(<span class="bu">range</span>(cm.shape[<span class="dv">0</span>]), <span class="bu">range</span>(cm.shape[<span class="dv">1</span>])):</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        plt.text(j, i, <span class="bu">format</span>(cm[i, j], fmt),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                 horizontalalignment<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                 color<span class="op">=</span><span class="st">"white"</span> <span class="cf">if</span> cm[i, j] <span class="op">&gt;</span> thresh <span class="cf">else</span> <span class="st">"black"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'True label'</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Predicted label'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="first-case-training-using-75-of-the-data-and-testing-on-the-remaining-25" class="level1">
+<h1>First case: Training using 75% of the data and testing on the remaining 25%</h1>
+<p>We have experimented a combination of different models in the ensemble. Although the results were quite similar, we found that a combination of KNN, XGB and logistic regression works best. In the code below we have created a voting classifier consist of these models.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:05.632560Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:05.631827Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:06.204602Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:06.203778Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:05.632524Z&quot;}" data-trusted="true" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from sklearn.ensemble import RandomForestClassifier</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> VotingClassifier</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBClassifier</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPClassifier</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> GaussianNB</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> AdaBoostClassifier</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#log_clf = LogisticRegression(max_iter=1000)</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>svm_clf <span class="op">=</span> SVC(probability<span class="op">=</span><span class="va">True</span>, gamma<span class="op">=</span><span class="fl">0.001</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>knn_clf <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>xgb_clf <span class="op">=</span> XGBClassifier(learning_rate<span class="op">=</span><span class="fl">0.01</span>, n_estimators<span class="op">=</span><span class="dv">300</span>, max_depth<span class="op">=</span><span class="dv">3</span>, subsample<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>mlp_clf <span class="op">=</span> MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">100</span>,), max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>nb_clf <span class="op">=</span> GaussianNB()</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>ada_clf <span class="op">=</span> AdaBoostClassifier(n_estimators<span class="op">=</span><span class="dv">50</span>, learning_rate<span class="op">=</span><span class="fl">0.003</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>lr_clf <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">10000</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>voting_clf <span class="op">=</span> VotingClassifier(</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  estimators<span class="op">=</span>[<span class="co">#('nn', mlp_clf),</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>              <span class="co">#('svc', svm_clf),</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>              (<span class="st">'knn'</span>, knn_clf), <span class="co">#('ada', ada_clf),('nb', nb_clf)</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>              (<span class="st">'xgb'</span>, xgb_clf), (<span class="st">'lr'</span>, lr_clf)],</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  voting<span class="op">=</span><span class="st">'hard'</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>voting_clf.fit(X_train_A, np.array(y_train_A).ravel())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>VotingClassifier(estimators=[('knn', KNeighborsClassifier(n_neighbors=3)),
+                             ('xgb',
+                              XGBClassifier(base_score=None, booster=None,
+                                            callbacks=None,
+                                            colsample_bylevel=None,
+                                            colsample_bynode=None,
+                                            colsample_bytree=None,
+                                            early_stopping_rounds=None,
+                                            enable_categorical=False,
+                                            eval_metric=None,
+                                            feature_types=None, gamma=None,
+                                            gpu_id=None, grow_policy=None,
+                                            importance_type=None,
+                                            interaction_constraints=None,
+                                            learning_rate=0.01, max_bin=None,
+                                            max_cat_threshold=None,
+                                            max_cat_to_onehot=None,
+                                            max_delta_step=None, max_depth=3,
+                                            max_leaves=None,
+                                            min_child_weight=None, missing=nan,
+                                            monotone_constraints=None,
+                                            n_estimators=300, n_jobs=None,
+                                            num_parallel_tree=None,
+                                            predictor=None, random_state=None, ...)),
+                             ('lr', LogisticRegression(max_iter=10000))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">VotingClassifier</label><div class="sk-toggleable__content"><pre>VotingClassifier(estimators=[('knn', KNeighborsClassifier(n_neighbors=3)),
+                             ('xgb',
+                              XGBClassifier(base_score=None, booster=None,
+                                            callbacks=None,
+                                            colsample_bylevel=None,
+                                            colsample_bynode=None,
+                                            colsample_bytree=None,
+                                            early_stopping_rounds=None,
+                                            enable_categorical=False,
+                                            eval_metric=None,
+                                            feature_types=None, gamma=None,
+                                            gpu_id=None, grow_policy=None,
+                                            importance_type=None,
+                                            interaction_constraints=None,
+                                            learning_rate=0.01, max_bin=None,
+                                            max_cat_threshold=None,
+                                            max_cat_to_onehot=None,
+                                            max_delta_step=None, max_depth=3,
+                                            max_leaves=None,
+                                            min_child_weight=None, missing=nan,
+                                            monotone_constraints=None,
+                                            n_estimators=300, n_jobs=None,
+                                            num_parallel_tree=None,
+                                            predictor=None, random_state=None, ...)),
+                             ('lr', LogisticRegression(max_iter=10000))])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><label>knn</label></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsClassifier</label><div class="sk-toggleable__content"><pre>KNeighborsClassifier(n_neighbors=3)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><label>xgb</label></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">XGBClassifier</label><div class="sk-toggleable__content"><pre>XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric=None, feature_types=None,
+              gamma=None, gpu_id=None, grow_policy=None, importance_type=None,
+              interaction_constraints=None, learning_rate=0.01, max_bin=None,
+              max_cat_threshold=None, max_cat_to_onehot=None,
+              max_delta_step=None, max_depth=3, max_leaves=None,
+              min_child_weight=None, missing=nan, monotone_constraints=None,
+              n_estimators=300, n_jobs=None, num_parallel_tree=None,
+              predictor=None, random_state=None, ...)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><label>lr</label></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=10000)</pre></div></div></div></div></div></div></div></div></div></div>
+</div>
+</div>
+<p>Here is a comparison of different models and the voting classifier.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:06.206665Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:06.205656Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:08.565558Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:08.564967Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:06.206635Z&quot;}" data-trusted="true" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> clf <span class="kw">in</span> (mlp_clf, svm_clf, <span class="co">#ada_clf,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>            knn_clf, xgb_clf, <span class="co">#nb_clf,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            lr_clf, voting_clf):</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    clf.fit(X_train_A, y_train_A)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    y_pred_A <span class="op">=</span> clf.predict(X_test_A)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    y_pred_B <span class="op">=</span> clf.predict(X_B)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(clf.__class__.<span class="va">__name__</span> <span class="op">+</span> <span class="st">" for dataset A:"</span>, accuracy_score(y_test_A, y_pred_A))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(clf.__class__.<span class="va">__name__</span> <span class="op">+</span> <span class="st">" for dataset B:"</span>, accuracy_score(y_B, y_pred_B))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/conda/lib/python3.10/site-packages/sklearn/neural_network/_multilayer_perceptron.py:686: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (1000) reached and the optimization hasn't converged yet.
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MLPClassifier for dataset A: 0.8688524590163934
+MLPClassifier for dataset B: 0.7828746177370031
+SVC for dataset A: 0.8797814207650273
+SVC for dataset B: 0.8103975535168195
+KNeighborsClassifier for dataset A: 0.8360655737704918
+KNeighborsClassifier for dataset B: 0.8042813455657493
+XGBClassifier for dataset A: 0.8961748633879781
+XGBClassifier for dataset B: 0.764525993883792
+LogisticRegression for dataset A: 0.8633879781420765
+LogisticRegression for dataset B: 0.7951070336391437
+VotingClassifier for dataset A: 0.8961748633879781
+VotingClassifier for dataset B: 0.8195718654434251</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:08.566788Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:08.566515Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:09.272503Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:09.271239Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:08.566768Z&quot;}" data-trusted="true" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>voting_clf.fit(X_train_A, y_train_A)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>y_pred_A <span class="op">=</span> clf.predict(X_test_A)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>cnf_matrix <span class="op">=</span> confusion_matrix(y_test_A, y_pred_A)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plot_confusion_matrix(cnf_matrix, classes<span class="op">=</span>class_names,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                      title<span class="op">=</span><span class="st">'Confusion matrix for '</span> <span class="op">+</span> clf.__class__.<span class="va">__name__</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion matrix, without normalization
+[[130   0   2]
+ [  4  11  11]
+ [  1   1  23]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="transformer-paper4_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="second-case-training-using-all-of-the-data-from-dataset-a" class="level1">
+<h1>Second case: Training using all of the data from Dataset A</h1>
+<p>So far we have used 75% of Dataset A to train the data and 25% to test it. Here, we used all of the data from Dataset A to train, and then test it on Dataset B.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:09.275960Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:09.273991Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:09.791096Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:09.790099Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:09.275924Z&quot;}" data-trusted="true" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> VotingClassifier</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBClassifier</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPClassifier</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> GaussianNB</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> AdaBoostClassifier</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>lr_clf <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">10000</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>svm_clf <span class="op">=</span> SVC(probability<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>knn_clf <span class="op">=</span> KNeighborsClassifier()</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>xgb_clf <span class="op">=</span> XGBClassifier(learning_rate<span class="op">=</span><span class="fl">0.01</span>, n_estimators<span class="op">=</span><span class="dv">300</span>, max_depth<span class="op">=</span><span class="dv">3</span>, subsample<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>mlp_clf <span class="op">=</span> MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">100</span>,), max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>nb_clf <span class="op">=</span> GaussianNB()</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#ada_clf = AdaBoostClassifier(n_estimators=50, learning_rate=0.003)</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>voting_clf <span class="op">=</span> VotingClassifier(</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  estimators<span class="op">=</span>[<span class="co">#('nn', mlp_clf),</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>              <span class="co">#('svc', svm_clf),</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>              (<span class="st">'knn'</span>, knn_clf), <span class="co">#('ada', ada_clf),('nb', nb_clf)</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>              (<span class="st">'xgb'</span>, xgb_clf), (<span class="st">'lr'</span>, lr_clf)],</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  voting<span class="op">=</span><span class="st">'hard'</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>voting_clf.fit(X_A, y_A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>VotingClassifier(estimators=[('knn', KNeighborsClassifier()),
+                             ('xgb',
+                              XGBClassifier(base_score=None, booster=None,
+                                            callbacks=None,
+                                            colsample_bylevel=None,
+                                            colsample_bynode=None,
+                                            colsample_bytree=None,
+                                            early_stopping_rounds=None,
+                                            enable_categorical=False,
+                                            eval_metric=None,
+                                            feature_types=None, gamma=None,
+                                            gpu_id=None, grow_policy=None,
+                                            importance_type=None,
+                                            interaction_constraints=None,
+                                            learning_rate=0.01, max_bin=None,
+                                            max_cat_threshold=None,
+                                            max_cat_to_onehot=None,
+                                            max_delta_step=None, max_depth=3,
+                                            max_leaves=None,
+                                            min_child_weight=None, missing=nan,
+                                            monotone_constraints=None,
+                                            n_estimators=300, n_jobs=None,
+                                            num_parallel_tree=None,
+                                            predictor=None, random_state=None, ...)),
+                             ('lr', LogisticRegression(max_iter=10000))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">VotingClassifier</label><div class="sk-toggleable__content"><pre>VotingClassifier(estimators=[('knn', KNeighborsClassifier()),
+                             ('xgb',
+                              XGBClassifier(base_score=None, booster=None,
+                                            callbacks=None,
+                                            colsample_bylevel=None,
+                                            colsample_bynode=None,
+                                            colsample_bytree=None,
+                                            early_stopping_rounds=None,
+                                            enable_categorical=False,
+                                            eval_metric=None,
+                                            feature_types=None, gamma=None,
+                                            gpu_id=None, grow_policy=None,
+                                            importance_type=None,
+                                            interaction_constraints=None,
+                                            learning_rate=0.01, max_bin=None,
+                                            max_cat_threshold=None,
+                                            max_cat_to_onehot=None,
+                                            max_delta_step=None, max_depth=3,
+                                            max_leaves=None,
+                                            min_child_weight=None, missing=nan,
+                                            monotone_constraints=None,
+                                            n_estimators=300, n_jobs=None,
+                                            num_parallel_tree=None,
+                                            predictor=None, random_state=None, ...)),
+                             ('lr', LogisticRegression(max_iter=10000))])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><label>knn</label></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsClassifier</label><div class="sk-toggleable__content"><pre>KNeighborsClassifier()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><label>xgb</label></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">XGBClassifier</label><div class="sk-toggleable__content"><pre>XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric=None, feature_types=None,
+              gamma=None, gpu_id=None, grow_policy=None, importance_type=None,
+              interaction_constraints=None, learning_rate=0.01, max_bin=None,
+              max_cat_threshold=None, max_cat_to_onehot=None,
+              max_delta_step=None, max_depth=3, max_leaves=None,
+              min_child_weight=None, missing=nan, monotone_constraints=None,
+              n_estimators=300, n_jobs=None, num_parallel_tree=None,
+              predictor=None, random_state=None, ...)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><label>lr</label></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox"><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=10000)</pre></div></div></div></div></div></div></div></div></div></div>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:09.792623Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:09.792362Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:10.748715Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:10.747417Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:09.792600Z&quot;}" data-trusted="true" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> clf <span class="kw">in</span> (<span class="co">#mlp_clf, svm_clf, #ada_clf,</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>            knn_clf, xgb_clf, lr_clf, <span class="co">#nb_clf,</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>            voting_clf):</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    clf.fit(X_A, y_A)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    y_pred_B <span class="op">=</span> clf.predict(X_B)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(clf.__class__.<span class="va">__name__</span> <span class="op">+</span> <span class="st">" for dataset B:"</span>, accuracy_score(y_B, y_pred_B))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>KNeighborsClassifier for dataset B: 0.8379204892966361
+XGBClassifier for dataset B: 0.7706422018348624
+LogisticRegression for dataset B: 0.8134556574923547
+VotingClassifier for dataset B: 0.8256880733944955</code></pre>
+</div>
+</div>
+<p>The code below is a function to visualize the confusion matrix</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:10.750323Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:10.749976Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:10.760437Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:10.758981Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:10.750292Z&quot;}" data-trusted="true" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_confusion_matrix(cm, classes, normalize<span class="op">=</span><span class="va">False</span>, cmap<span class="op">=</span>plt.cm.Blues, title<span class="op">=</span><span class="st">'Confusion matrix'</span>):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> normalize:</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        cm <span class="op">=</span> cm.astype(<span class="st">'float'</span>) <span class="op">/</span> cm.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)[:, np.newaxis]</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Normalized confusion matrix"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Confusion matrix, without normalization'</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(cm)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    plt.imshow(cm, interpolation<span class="op">=</span><span class="st">'nearest'</span>, cmap<span class="op">=</span>cmap)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    plt.colorbar()</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    tick_marks <span class="op">=</span> np.arange(<span class="bu">len</span>(classes))</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    plt.xticks(tick_marks, classes, rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    plt.yticks(tick_marks, classes)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    fmt <span class="op">=</span> <span class="st">'.2f'</span> <span class="cf">if</span> normalize <span class="cf">else</span> <span class="st">'d'</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    thresh <span class="op">=</span> cm.<span class="bu">max</span>() <span class="op">/</span> <span class="fl">2.</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, j <span class="kw">in</span> itertools.product(<span class="bu">range</span>(cm.shape[<span class="dv">0</span>]), <span class="bu">range</span>(cm.shape[<span class="dv">1</span>])):</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        plt.text(j, i, <span class="bu">format</span>(cm[i, j], fmt),</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>                 horizontalalignment<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>                 color<span class="op">=</span><span class="st">"white"</span> <span class="cf">if</span> cm[i, j] <span class="op">&gt;</span> thresh <span class="cf">else</span> <span class="st">"black"</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'True label'</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Predicted label'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Confusion Matrix:</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:10.762531Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:10.761973Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:12.561639Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:12.560354Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:10.762504Z&quot;}" data-scrolled="true" data-trusted="true" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> clf <span class="kw">in</span> (<span class="co">#mlp_clf, svm_clf, #ada_clf,</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>            knn_clf, xgb_clf, lr_clf, <span class="co">#nb_clf,</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>            voting_clf):</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    clf.fit(X_A, y_A)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    y_pred_B <span class="op">=</span> clf.predict(X_B)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    cnf_matrix <span class="op">=</span> confusion_matrix(y_B, y_pred_B)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    np.set_printoptions(precision<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    plt.figure()</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    plot_confusion_matrix(cnf_matrix, classes<span class="op">=</span>class_names,</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                          title<span class="op">=</span><span class="st">'Confusion matrix for '</span> <span class="op">+</span> clf.__class__.<span class="va">__name__</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion matrix, without normalization
+[[245   8   4]
+ [ 11  11  18]
+ [  8   4  18]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="transformer-paper4_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion matrix, without normalization
+[[222  20  15]
+ [  6   3  31]
+ [  3   0  27]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="transformer-paper4_files/figure-html/cell-13-output-4.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion matrix, without normalization
+[[235  17   5]
+ [ 10   7  23]
+ [  5   1  24]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="transformer-paper4_files/figure-html/cell-13-output-6.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion matrix, without normalization
+[[242  10   5]
+ [ 10   3  27]
+ [  5   0  25]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="transformer-paper4_files/figure-html/cell-13-output-8.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-05-18T13:45:12.565166Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-05-18T13:45:12.564812Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-05-18T13:45:13.293728Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-05-18T13:45:13.292767Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-05-18T13:45:12.565138Z&quot;}" data-trusted="true" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>voting_clf.fit(X_A, y_A)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>y_pred_B <span class="op">=</span> voting_clf.predict(X_B)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>cnf_matrix <span class="op">=</span> confusion_matrix(y_B, y_pred_B)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>plot_confusion_matrix(cnf_matrix, classes<span class="op">=</span>class_names,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                      title<span class="op">=</span><span class="st">'Confusion matrix for '</span> <span class="op">+</span> clf.__class__.<span class="va">__name__</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion matrix, without normalization
+[[242  10   5]
+ [ 10   3  27]
+ [  5   0  25]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="transformer-paper4_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
