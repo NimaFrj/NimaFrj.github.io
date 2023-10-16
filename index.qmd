@@ -41,11 +41,11 @@ On this site, you'll find a list of my publications, notable projects, [my CV](c
 
 ### Publications
 
-**Stacked Ensemble Regression Model for Prediction of Furan.** Faraji, M.A, Shooshtari, A, El-hag, A. 2023. Energies, MDPI. (Under Review)
+**Stacked Ensemble Regression Model for Prediction of Furan.** [Faraji, M.A]{.underline}, Shooshtari, A, El-hag, A. 2023. Energies, MDPI. (Under Review)
 
-**Investigation on the characteristics of a Non-Pneumatic tire with different spoke shapes. [(Link)](ISME_NPT_Faraji.pdf)** Faraji, M.A, Daneshmehr, A.R. 2022. The 30th Annual International Conference of Iranian Society of Mechanical Engineers-ISME2022.
+**Investigation on the characteristics of a Non-Pneumatic tire with different spoke shapes. [(Link)](ISME_NPT_Faraji.pdf)** [Faraji, M.A]{.underline}, Daneshmehr, A.R. 2022. The 30th Annual International Conference of Iranian Society of Mechanical Engineers-ISME2022.
 
-**Computational study on a DAH auxetic structure manufactured by corrugated sheets. [(Link)](ICME_Faraji.pdf)** Faraji, M.A, Mazaheri, H. 2020. International Conference on Manufacturing Engineering at Tarbiat Modares University-ICME 2018.
+**Computational study on a DAH auxetic structure manufactured by corrugated sheets. [(Link)](ICME_Faraji.pdf)** [Faraji, M.A]{.underline}, Mazaheri, H. 2020. International Conference on Manufacturing Engineering at Tarbiat Modares University-ICME 2018.
 
 ### GitHub Projects
 
