@@ -33,7 +33,7 @@ I'm passionate about using my knowledge to make a positive impact on society. In
 
 When I'm not working on my research, I enjoy playing chess [on chess.com](https://www.chess.com/member/darvack), reading [Tim Urban's blog](https://waitbutwhy.com/), or listening to [Lex Fridman's](https://www.youtube.com/@lexfridman) podcasts.
 
-On this site, you'll find a list of my publications, notable projects, [my CV](cv2.pdf), and a simple [blog](Blog) where I share my thoughts on computer science, life, and self-improvement.
+On this site, you'll find a list of my publications, notable projects, [my CV](cv_faraji_c2.pdf), and a simple [blog](Blog) where I share my thoughts on computer science, life, and self-improvement.
 
 ## Selected Projects
 
