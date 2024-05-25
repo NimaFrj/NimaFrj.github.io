@@ -18,7 +18,7 @@ about:
     - text: Blog
       url: "Blog"
     - text: CV
-      url: "cv_faraji_c.pdf"
+      url: "cv_faraji_c2.pdf"
 comments: false
 ---
 
