@@ -28,5 +28,4 @@ format:
   html:
     theme:
       - simplex          # or sandstone, whichever you prefer
-      - _variables.scss  # <-- your overrides & custom rules
     max-width: 2000px
