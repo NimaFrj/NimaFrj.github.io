@@ -6,7 +6,7 @@ project:
     - cv.pdf
 
 website:
-  title: ""
+  title: "Mohammad Amin (Nima) Faraji"
   site-url: https://nimafrj.github.io
   description: "Personal Website"
   open-graph:
@@ -17,7 +17,7 @@ website:
     utterances:
       repo: mikemahoney218/mm218.dev
   navbar:
-    right:
+    left:
       - text: "Home"
         href: index.html
       - text: "Blog"
@@ -26,4 +26,7 @@ website:
         href: blog.xml
 format:
   html:
-    theme: simplex
+    theme:
+      - simplex          # or sandstone, whichever you prefer
+      - _variables.scss  # <-- your overrides & custom rules
+    max-width: 2000px

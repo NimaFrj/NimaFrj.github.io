@@ -137,3 +137,24 @@ $breadcrumb-border-radius:          .25rem !default;
 $btn-close-color:            $white !default;
 $btn-close-opacity:          .8 !default;
 $btn-close-hover-opacity:    1 !default;
+
+
+
+/*-- scss:rules --*/
+
+/* Increase space between the left photo and the right content on About pages */
+.about, .quarto-about {
+    .about-container {
+      gap: 40px;        /* preferred: adds space between left & right */
+      column-gap: 40px; /* fallback for grid-based layouts */
+    }
+    .about-image {
+      margin-right: 40px !important; /* fallback if gap doesn't apply */
+    }
+  }
+  
+  /* If your layout uses Bootstrap rows/cols instead, this also helps */
+  .about .row {
+    --bs-gutter-x: 3rem;
+  }
+  
