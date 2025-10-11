@@ -22,7 +22,6 @@ about:
 comments: false
 ---
 
-::: column-page
 ## Bio
 
 Hi! I'm Mohammad Amin, a recent graduate from the University of Tehran with a master's degree in mechanical engineering.
@@ -35,11 +34,15 @@ When I'm not working on my research, I enjoy playing chess [on chess.com](https:
 
 On this site, you'll find a list of my publications, notable projects, [my CV](https://drive.google.com/file/d/1cUiae5PFfUqpoMedOvDKUnq8ei2vtwfe/view?usp=drive_link), and a simple [blog](Blog) where I share my thoughts on computer science, life, and self-improvement.
 
-## Selected Projects
+## 
 
-### Publications
+## Publications
 
-**Multi Objective Optimization of a Bio-Inspired Structure in Non-Pneumatic Tires** (Under Review). [Faraji, M.A]{.underline}, Shaban, M, Mazaheri, H. 2024. Advances in Engineering Software.
+**Enhancing hydrogel predictive modeling: an augmented neural network approach for swelling dynamics in pHresponsive hydrogels.**(<https://doi.org/10.1007/s10483-025-3290-9>)**.** [Faraji, M.A]{.underline}, Askari-Sedeh, M, Zolfagharian, A, Baghani, M - Applied Mathematics and Mechanics (English Edition), 46, 1787–1808 (2025).
+
+**Physics-Informed Neural Network modeling of inflating dielectric elastomer tubes for energy harvesting applications.**(<https://doi.org/10.3390/polym17172329>)**.** Askari-Sedeh, M, [Faraji, M.A,]{.underline} Baniardalan, M.A, Choi, E, Baghani, M - Polymers, 17(17), 2329 (2025).
+
+**Enhancing non-pneumatic tire performance with bio-inspired designs: a multi-objective optimization method.** (<https://doi.org/10.1007/s40430-025-05604-y>). [Faraji, M.A]{.underline}, Shaban, M, Mazaheri, H. Journal of the Brazilian Society of Mechanical Sciences and Engineering, 47, 369 (2025).
 
 **Stacked Ensemble Regression Model for Prediction of Furan.** ([**https://doi.org/10.3390/en16227656**](https://doi.org/10.3390/en16227656))**.** [Faraji, M.A]{.underline}, Shooshtari, A, El-hag, A. 2023. Energies, MDPI.
 
@@ -64,4 +67,3 @@ My code for Kaggle's NLP competition "U.S. Patent Phrase to Phrase Matching".
 [**Pen or Pencil classifier**](https://nimafrj.github.io/Pencil_Website/pencil.html)**:**
 
 It's whole objective is a web deployment of a pen or a pencil classifier that is trained on the pictures from the internet.
-:::
